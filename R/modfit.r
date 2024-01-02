@@ -162,7 +162,7 @@ model_fitting <- function(mod,dat) {
                    col = cols
     )
     
-    ####---bothBA12 model -----------------------------------------------
+    ####-----------------------------------------------
     end_date<-as.Date("2022-02-01",origin="1970-01-01")
     df_mutation2<-df_mutation[which(df_mutation$Date<end_date),]
     
@@ -217,7 +217,7 @@ model_fitting <- function(mod,dat) {
     )
 
     
-    ####--- onlyB2 model -----------------------------------------------
+    ####--------------------------------------------------
     df_mutation1<-df_mutation[which(df_mutation$Date>as.Date("2021-11-15")),] 
     
     lagknots <- logknots(40,1)

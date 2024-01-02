@@ -284,7 +284,7 @@ model_fitting <- function(mod,dat) {
     
     fit <- suppressWarnings(
       lme4::glmer(Daily_hospital_Admission_pct1 ~ (1 | State) + cb.case + Adjust_Doses_Vax_Pct_7 + onlyBA1 + onlyBA2 + bothBA12 +
-                         inpatient_beds +ns(Date,4) + Humidity_14MA + TEMP_new_14MA  + as.factor(weekday) + as.factor(holiday),  
+                         inpatient_beds  + Humidity_14MA + TEMP_new_14MA  + as.factor(weekday) + as.factor(holiday),  
                        data = df_mutation, #
                        weights = New_Cases_MA,
                        family = "binomial",
@@ -294,7 +294,6 @@ model_fitting <- function(mod,dat) {
     a<-summary(fit)
     
     cat("Mediation model fitting coefficient results:\n")
-    print(a$coefficients) #model coefficient
     
     cat("Effects of factors on COVID-19 CHR in the Mediation model (OR values and 95% CI):\n")
     print(paste("Vaccination coverage (25%) OR: ", round(exp(25*(-6.357e-03)),3), " (", round(exp(25*(-6.357e-03-1.96*2.527e-03)),3), ",", round(exp(25*(-6.357e-03+1.96*2.527e-03)),3), ")", sep="")) # transform to OR based on the coefficient
